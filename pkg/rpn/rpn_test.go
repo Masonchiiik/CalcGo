@@ -37,6 +37,21 @@ func TestCalc(t *testing.T) {
 			expression:     "1/2",
 			expectedResult: 0.5,
 		},
+		{
+			name:           "priority",
+			expression:     "2+2+(2*2)/2*(2+2)",
+			expectedResult: 12.0,
+		},
+		{
+			name:           "simple",
+			expression:     "2+2",
+			expectedResult: 4.0,
+		},
+		{
+			name:           "one char",
+			expression:     "2",
+			expectedResult: 2.0,
+		},
 	}
 
 	for _, test_case := range testCasesSuccess {
