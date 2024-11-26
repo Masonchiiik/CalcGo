@@ -1,3 +1,3 @@
-module github.com/Arsenij-Streltsov/CalcGo
+module github.com/Masonchiiik/CalcGo
 
 go 1.23.2
