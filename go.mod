@@ -1,3 +1,3 @@
-module github.com/Arsenij-Streltsov/Golang_Project
+module github.com/Masonchiiik/CalcGo
 
 go 1.23.2

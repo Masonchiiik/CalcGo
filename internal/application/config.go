@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/Arsenij-Streltsov/Golang_Project/pkg/rpn"
+	"github.com/Masonchiiik/CalcGo/pkg/rpn"
 )
 
 type Application struct {
