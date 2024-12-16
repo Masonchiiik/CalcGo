@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Arsenij-Streltsov/CalcGo/pkg/rpn"
+	"github.com/Masonchiiik/CalcGo/pkg/rpn"
 )
 
 type Application struct {
