@@ -1,9 +1,9 @@
 package application
 
 import (
-	"bufio"
-	"log"
-	"os"
+	"encoding/json"
+	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/Arsenij-Streltsov/CalcGo/pkg/rpn"
@@ -12,35 +12,56 @@ import (
 type Application struct {
 }
 
+type Answer struct {
+	Result float64 `json:"result"`
+}
+
+type Request struct {
+	Expression string `json:"expression"`
+}
+
 func New() *Application {
 	return &Application{}
 }
 
-// Функция запуска приложения
-// тут будем чиать введенную строку и после нажатия ENTER писать результат работы программы на экране
-// если пользователь ввел exit - то останаваливаем приложение
-func (a *Application) Run() error {
-	for {
-		// читаем выражение для вычисления из командной строки
-		log.Println("input expression")
-		reader := bufio.NewReader(os.Stdin)
-		text, err := reader.ReadString('\n')
-		if err != nil {
-			log.Println("failed to read expression from console")
-		}
-		// убираем пробелы, чтобы оставить только вычислемое выражение
-		text = strings.TrimSpace(text)
-		// выходим, если ввели команду "exit"
-		if text == "exit" {
-			log.Println("aplication was successfully closed")
-			return nil
-		}
-		//вычисляем выражение
-		result, err := rpn.Calc(text)
-		if err != nil {
-			log.Println(text, " calculation failed wit error: ", err)
-		} else {
-			log.Println(text, "=", result)
-		}
+func CalculateHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Only Post Method avaible", 418)
+		return
 	}
+
+	var requestBody Request
+	err := json.NewDecoder(r.Body).Decode(&requestBody)
+
+	if err != nil {
+		http.Error(w, "Something wrong", 500)
+		return
+	}
+
+	defer r.Body.Close()
+
+	result, err := rpn.Calc(strings.TrimSpace(requestBody.Expression))
+	if err != nil {
+		http.Error(w, "Expression is not valid", 422)
+		return
+	}
+	var ans Answer
+	ans.Result = result
+	jsonByte, err := json.Marshal(ans)
+
+	if err != nil {
+		http.Error(w, "Something wrong", 500)
+		return
+	}
+
+	fmt.Fprint(w, string(jsonByte))
+}
+
+func (a *Application) StartServer() {
+	mux := http.NewServeMux()
+	Handler := http.HandlerFunc(CalculateHandler)
+
+	mux.Handle("/api/v1/calculate", Handler)
+
+	http.ListenAndServe(":8080", mux)
 }
