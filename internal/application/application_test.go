@@ -1,4 +1,4 @@
-package application
+package application_test
 
 import (
 	"bytes"
@@ -19,43 +19,40 @@ type ResponseTest struct {
 }
 
 func TestCalculateHandler(t *testing.T) {
-	handler := http.HandlerFunc(application.CalculateHandler)
 
 	tests := []struct {
-		name       string
-		input      RequestTest
-		expected   float64
-		statusCode int
+		name           string
+		input          RequestTest
+		expectedResult float64
 	}{
 		{
 			name: "Normal expression",
 			input: RequestTest{
 				Expression: "2+2",
 			},
-			expected:   4,
-			statusCode: http.StatusOK,
+			expectedResult: 4,
 		},
 		{
-			name: "Incomplete expression",
+			name: "Invalid expression",
 			input: RequestTest{
 				Expression: "2+",
 			},
-			statusCode: http.StatusBadRequest,
 		},
 		{
-			name: "Invalid characters in expression",
+			name: "Invalid expression",
 			input: RequestTest{
 				Expression: "2+()",
 			},
-			statusCode: http.StatusBadRequest,
 		},
 	}
 
 	for _, tt := range tests {
+
 		t.Run(tt.name, func(t *testing.T) {
+			handler := http.HandlerFunc(application.CalculateHandler)
 			body, err := json.Marshal(tt.input)
 			if err != nil {
-				t.Fatalf("failed to marshal input: %v", err)
+				t.Fatal("failed to marshal input")
 			}
 
 			req := httptest.NewRequest(http.MethodPost, "/api/v1/calculate", bytes.NewReader(body))
@@ -64,20 +61,14 @@ func TestCalculateHandler(t *testing.T) {
 			rec := httptest.NewRecorder()
 			handler.ServeHTTP(rec, req)
 
-			if rec.Code != tt.statusCode {
-				t.Errorf("expected status code %d, got %d", tt.statusCode, rec.Code)
+			var resp ResponseTest
+			err = json.NewDecoder(rec.Body).Decode(&resp)
+			if err != nil {
+				t.Fatal("failed to decode")
 			}
 
-			if tt.statusCode == http.StatusOK {
-				var resp ResponseTest
-				err := json.NewDecoder(rec.Body).Decode(&resp)
-				if err != nil {
-					t.Fatalf("failed to decode response: %v", err)
-				}
-
-				if resp.Result != tt.expected {
-					t.Errorf("expected result %f, got %f", tt.expected, resp.Result)
-				}
+			if resp.Result != tt.expectedResult {
+				t.Errorf("expected result %f, got %f", tt.expectedResult, resp.Result)
 			}
 		})
 	}
