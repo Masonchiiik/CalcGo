@@ -42,7 +42,7 @@ func CalculateHandler(w http.ResponseWriter, r *http.Request) {
 
 	result, err := rpn.Calc(strings.TrimSpace(requestBody.Expression))
 	if err != nil {
-		http.Error(w, "Expression is not valid", 422)
+		http.Error(w, err.Error(), 422)
 		return
 	}
 	var ans Answer
