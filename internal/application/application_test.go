@@ -92,8 +92,6 @@ func TestCalculateHandler(t *testing.T) {
 			}
 
 			req := httptest.NewRequest(http.MethodPost, "/api/v1/calculate", bytes.NewReader(body))
-			req.Header.Set("Content-Type", "application/json")
-
 			rec := httptest.NewRecorder()
 			handler.ServeHTTP(rec, req)
 
