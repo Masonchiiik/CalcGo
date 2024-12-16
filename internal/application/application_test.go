@@ -72,6 +72,14 @@ func TestCalculateHandler(t *testing.T) {
 			expectedResult: 2048,
 			err:            nil,
 		},
+		{
+			name: "Valid expression",
+			input: RequestTest{
+				Expression: "1/2",
+			},
+			expectedResult: 0.5,
+			err:            nil,
+		},
 	}
 
 	for _, tt := range tests {
