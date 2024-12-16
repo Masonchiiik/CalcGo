@@ -28,7 +28,7 @@ func TestCalculateHandler(t *testing.T) {
 		err            error
 	}{
 		{
-			name: "Normal expression",
+			name: "Valid expression",
 			input: RequestTest{
 				Expression: "2+2",
 			},
@@ -50,7 +50,7 @@ func TestCalculateHandler(t *testing.T) {
 			err: errors.New("Expression is not valid"),
 		},
 		{
-			name: "Normal expression",
+			name: "Valid expression",
 			input: RequestTest{
 				Expression: "2+2*2",
 			},
@@ -63,6 +63,14 @@ func TestCalculateHandler(t *testing.T) {
 				Expression: "()",
 			},
 			err: errors.New("Expression is not valid"),
+		},
+		{
+			name: "Valid expression",
+			input: RequestTest{
+				Expression: "1024*2",
+			},
+			expectedResult: 2048,
+			err:            nil,
 		},
 	}
 
