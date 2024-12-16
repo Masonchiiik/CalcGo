@@ -25,16 +25,17 @@ func New() *Application {
 }
 
 func CalculateHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "Only Post Method avaible", 418)
-		return
-	}
 
 	var requestBody Request
 	err := json.NewDecoder(r.Body).Decode(&requestBody)
 
+	if r.Method != http.MethodPost {
+		http.Error(w, errorInternal, 500)
+		return
+	}
+
 	if err != nil {
-		http.Error(w, "Something wrong", 500)
+		http.Error(w, errorInternal, 500)
 		return
 	}
 
@@ -42,7 +43,7 @@ func CalculateHandler(w http.ResponseWriter, r *http.Request) {
 
 	result, err := rpn.Calc(strings.TrimSpace(requestBody.Expression))
 	if err != nil {
-		http.Error(w, err.Error(), 422)
+		http.Error(w, errorExpression, 422)
 		return
 	}
 	var ans Answer
@@ -50,7 +51,7 @@ func CalculateHandler(w http.ResponseWriter, r *http.Request) {
 	jsonByte, err := json.Marshal(ans)
 
 	if err != nil {
-		http.Error(w, "Something wrong", 500)
+		http.Error(w, errorInternal, 500)
 		return
 	}
 
