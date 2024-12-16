@@ -8,6 +8,7 @@
 }
 ```
 
+
 и получать ответ вида:
 ```
 {
@@ -22,6 +23,8 @@
 
 Примеры использования:
     1. Отправляем POST запрос на localhost:8080/api/v1/calculate через curl
+
+
     ```curl
     curl --location 'localhost:8080/api/v1/calculate' \
     --header 'Content-Type: application/json' \
@@ -29,4 +32,6 @@
         "expression": "2*2+2"
     }'
     ```
+
+    
     данный запрос выведет 6 и код ошибки 200 что значит что всё прошло хорошо
