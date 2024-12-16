@@ -3,6 +3,7 @@ package application_test
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -24,6 +25,7 @@ func TestCalculateHandler(t *testing.T) {
 		name           string
 		input          RequestTest
 		expectedResult float64
+		err            error
 	}{
 		{
 			name: "Normal expression",
@@ -31,18 +33,36 @@ func TestCalculateHandler(t *testing.T) {
 				Expression: "2+2",
 			},
 			expectedResult: 4,
+			err:            nil,
 		},
 		{
 			name: "Invalid expression",
 			input: RequestTest{
 				Expression: "2+",
 			},
+			err: nil,
 		},
 		{
 			name: "Invalid expression",
 			input: RequestTest{
 				Expression: "2+()",
 			},
+			err: errors.New("Expression is not valid"),
+		},
+		{
+			name: "Normal expression",
+			input: RequestTest{
+				Expression: "2+2*2",
+			},
+			expectedResult: 6,
+			err:            nil,
+		},
+		{
+			name: "Invalid expression",
+			input: RequestTest{
+				Expression: "()",
+			},
+			err: errors.New("Expression is not valid"),
 		},
 	}
 
