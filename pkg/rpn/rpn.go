@@ -6,15 +6,6 @@ import (
 	"strconv"
 )
 
-func Calc(expression string) (float64, error) {
-	tokens := tokenize(expression)
-	postfix, err := toPostfix(tokens)
-	if err != nil {
-		return 0, err
-	}
-	return evaluate(postfix)
-}
-
 func tokenize(expr string) []string {
 	var tokens []string
 	var currentToken string
@@ -41,13 +32,12 @@ func tokenize(expr string) []string {
 	return tokens
 }
 
-func toPostfix(tokens []string) ([]string, error) {
+func Calc(expression string) (float64, error) {
+	tokens := tokenize(expression)
 	var output, operators []string
 
 	for _, token := range tokens {
 		switch {
-		case isNumber(token):
-			output = append(output, token)
 		case token == "(":
 			operators = append(operators, token)
 		case token == ")":
@@ -56,40 +46,33 @@ func toPostfix(tokens []string) ([]string, error) {
 				operators = operators[:len(operators)-1]
 			}
 			if len(operators) == 0 {
-				return nil, errors.New("invalid expression")
+				return 0, errors.New("invalid expression")
 			}
 			operators = operators[:len(operators)-1]
-		case isOperator(token):
-			for len(operators) > 0 && precedence(operators[len(operators)-1]) >= precedence(token) {
+		case token == "+" || token == "-" || token == "*" || token == "/":
+			for len(operators) > 0 && (operators[len(operators)-1] == "*" || operators[len(operators)-1] == "/") {
 				output = append(output, operators[len(operators)-1])
 				operators = operators[:len(operators)-1]
 			}
 			operators = append(operators, token)
 		default:
-			return nil, fmt.Errorf("invalid expression")
+			_, err := strconv.ParseFloat(token, 64)
+			if err != nil {
+				return 0, fmt.Errorf("invalid expression")
+			}
+			output = append(output, token)
 		}
 	}
 
 	for len(operators) > 0 {
-		if operators[len(operators)-1] == "(" {
-			return nil, errors.New("invalid expression")
-		}
 		output = append(output, operators[len(operators)-1])
 		operators = operators[:len(operators)-1]
 	}
 
-	return output, nil
-}
-
-func evaluate(postfix []string) (float64, error) {
 	var stack []float64
-
-	for _, token := range postfix {
+	for _, token := range output {
 		switch {
-		case isNumber(token):
-			num, _ := strconv.ParseFloat(token, 64)
-			stack = append(stack, num)
-		case isOperator(token):
+		case token == "+" || token == "-" || token == "*" || token == "/":
 			if len(stack) < 2 {
 				return 0, errors.New("invalid expression")
 			}
@@ -110,7 +93,11 @@ func evaluate(postfix []string) (float64, error) {
 				stack = append(stack, a/b)
 			}
 		default:
-			return 0, fmt.Errorf("invalid token")
+			num, err := strconv.ParseFloat(token, 64)
+			if err != nil {
+				return 0, fmt.Errorf("invalid token")
+			}
+			stack = append(stack, num)
 		}
 	}
 
@@ -119,23 +106,4 @@ func evaluate(postfix []string) (float64, error) {
 	}
 
 	return stack[0], nil
-}
-
-func isNumber(token string) bool {
-	_, err := strconv.ParseFloat(token, 64)
-	return err == nil
-}
-
-func isOperator(token string) bool {
-	return token == "+" || token == "-" || token == "*" || token == "/"
-}
-
-func precedence(op string) int {
-	if op == "+" || op == "-" {
-		return 1
-	}
-	if op == "*" || op == "/" {
-		return 2
-	}
-	return 0
 }
