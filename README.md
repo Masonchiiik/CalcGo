@@ -44,8 +44,42 @@ curl --location 'localhost:8080/api/v1/calculate' \
 
 HTTP-код ответа: `200` (всё прошло успешно).
 
+### Примеры использования(некоректное выражение)
+```bash
+curl --location 'localhost:8080/api/v1/calculate' \
+--header 'Content-Type: application/json' \
+--data '{
+    "expression": "0.25+0.251++"
+}
+'
+```
+### Ответ:
+```json
+{
+    "error": "Expression is not valid"
+}
+```
+HTTP код ответа: 422
+
+### Примеры использования(отправка не POST запроса)
+```bash
+curl --location --request GET 'localhost:8080/api/v1/calculate' \
+--header 'Content-Type: application/json' \
+--data '{
+    "expression": "0.25+0.251++"
+}
+'
+```
+
+### Ответ
+```bash
+{
+    "error": "Internal server error"
+}
+```
+
 ## Примечания
 
 - Убедитесь, что порт `8080` не занят другими приложениями.
 - Поддерживаются стандартные арифметические операции: сложение, вычитание, умножение, деление и скобки для изменения порядка операций.
-
+- Поддерживаются только POST запросы, отправка других приведёт к ошибке
