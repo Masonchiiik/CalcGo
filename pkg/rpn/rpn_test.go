@@ -59,7 +59,7 @@ func TestCalc(t *testing.T) {
 			val, err := rpn.Calc(test_case.expression)
 
 			if err != nil {
-				t.Fatalf("succesful case %s returns error", test_case.expression)
+				t.Fatalf("succesful case %v returns error", test_case.expression)
 			}
 
 			if val != test_case.expectedResult {
@@ -100,7 +100,7 @@ func TestCalc(t *testing.T) {
 		t.Run(testCase.name, func(t *testing.T) {
 			val, err := rpn.Calc(testCase.expression)
 			if err == nil {
-				t.Fatalf("expression %s is invalid but result  %f was obtained", testCase.expression, val)
+				t.Fatalf("expression %v is invalid but result  %v was obtained", testCase.expression, val)
 			}
 		})
 	}

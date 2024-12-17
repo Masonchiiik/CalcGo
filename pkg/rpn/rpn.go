@@ -9,11 +9,11 @@ import (
 
 func Calc(expression string) (float64, error) {
 	tokens := tokenize(expression)
-	postfix, err := infixToPostfix(tokens)
+	postfix, err := toPostfix(tokens)
 	if err != nil {
 		return 0, err
 	}
-	return evaluatePostfix(postfix)
+	return evaluate(postfix)
 }
 
 func tokenize(expr string) []string {
@@ -42,38 +42,38 @@ func tokenize(expr string) []string {
 	return tokens
 }
 
-func infixToPostfix(tokens []string) ([]string, error) {
-	var output []string
-	var operators []string
+func toPostfix(tokens []string) ([]string, error) {
+	var output, operators []string
 
 	for _, token := range tokens {
-		if isNumber(token) {
+		switch {
+		case isNumber(token):
 			output = append(output, token)
-		} else if token == "(" {
+		case token == "(":
 			operators = append(operators, token)
-		} else if token == ")" {
+		case token == ")":
 			for len(operators) > 0 && operators[len(operators)-1] != "(" {
 				output = append(output, operators[len(operators)-1])
 				operators = operators[:len(operators)-1]
 			}
 			if len(operators) == 0 {
-				return nil, errors.New("mismatched parent")
+				return nil, errors.New("invalid expression")
 			}
 			operators = operators[:len(operators)-1]
-		} else if isOperator(token) {
+		case isOperator(token):
 			for len(operators) > 0 && precedence(operators[len(operators)-1]) >= precedence(token) {
 				output = append(output, operators[len(operators)-1])
 				operators = operators[:len(operators)-1]
 			}
 			operators = append(operators, token)
-		} else {
-			return nil, fmt.Errorf("invalid character")
+		default:
+			return nil, fmt.Errorf("invalid expression")
 		}
 	}
 
 	for len(operators) > 0 {
 		if operators[len(operators)-1] == "(" {
-			return nil, errors.New("mismatched parentheses")
+			return nil, errors.New("invalid expression")
 		}
 		output = append(output, operators[len(operators)-1])
 		operators = operators[:len(operators)-1]
@@ -82,19 +82,19 @@ func infixToPostfix(tokens []string) ([]string, error) {
 	return output, nil
 }
 
-func evaluatePostfix(postfix []string) (float64, error) {
+func evaluate(postfix []string) (float64, error) {
 	var stack []float64
 
 	for _, token := range postfix {
-		if isNumber(token) {
+		switch {
+		case isNumber(token):
 			num, _ := strconv.ParseFloat(token, 64)
 			stack = append(stack, num)
-		} else if isOperator(token) {
+		case isOperator(token):
 			if len(stack) < 2 {
 				return 0, errors.New("invalid expression")
 			}
-			b := stack[len(stack)-1]
-			a := stack[len(stack)-2]
+			b, a := stack[len(stack)-1], stack[len(stack)-2]
 			stack = stack[:len(stack)-2]
 
 			switch token {
@@ -109,11 +109,9 @@ func evaluatePostfix(postfix []string) (float64, error) {
 					return 0, errors.New("division by zero")
 				}
 				stack = append(stack, a/b)
-			default:
-				return 0, fmt.Errorf("unknown operator: %s", token)
 			}
-		} else {
-			return 0, fmt.Errorf("invalid token: %s", token)
+		default:
+			return 0, fmt.Errorf("invalid token")
 		}
 	}
 
@@ -125,22 +123,20 @@ func evaluatePostfix(postfix []string) (float64, error) {
 }
 
 func isNumber(token string) bool {
-	if _, err := strconv.ParseFloat(token, 64); err == nil {
-		return true
-	}
-	return false
+	_, err := strconv.ParseFloat(token, 64)
+	return err == nil
 }
 
 func isOperator(token string) bool {
 	return token == "+" || token == "-" || token == "*" || token == "/"
 }
+
 func precedence(op string) int {
-	switch op {
-	case "+", "-":
+	if op == "+" || op == "-" {
 		return 1
-	case "*", "/":
-		return 2
-	default:
-		return 0
 	}
+	if op == "*" || op == "/" {
+		return 2
+	}
+	return 0
 }
