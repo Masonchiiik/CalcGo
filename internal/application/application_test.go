@@ -80,6 +80,14 @@ func TestCalculateHandler(t *testing.T) {
 			expectedResult: 0.5,
 			err:            nil,
 		},
+		{
+			name: "Valid expression with float input and with space",
+			input: RequestTest{
+				Expression: "0.5 + 0.5",
+			},
+			expectedResult: 1,
+			err:            nil,
+		},
 	}
 
 	for _, tt := range tests {
@@ -98,7 +106,9 @@ func TestCalculateHandler(t *testing.T) {
 			var resp ResponseTest
 			err = json.NewDecoder(rec.Body).Decode(&resp)
 			if err != nil {
-				t.Fatal("failed to decode")
+				if err != tt.err {
+					t.Errorf("error is not valid")
+				}
 			}
 
 			if resp.Result != tt.expectedResult {

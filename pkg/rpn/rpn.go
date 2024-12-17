@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
-	"strings"
 )
 
 func Calc(expression string) (float64, error) {
@@ -18,25 +17,25 @@ func Calc(expression string) (float64, error) {
 
 func tokenize(expr string) []string {
 	var tokens []string
-	var currentToken strings.Builder
+	var currentToken string
 
 	for _, char := range expr {
 		switch char {
 		case ' ':
 			continue
 		case '+', '-', '*', '/', '(', ')':
-			if currentToken.Len() > 0 {
-				tokens = append(tokens, currentToken.String())
-				currentToken.Reset()
+			if len(currentToken) > 0 {
+				tokens = append(tokens, currentToken)
+				currentToken = ""
 			}
 			tokens = append(tokens, string(char))
 		default:
-			currentToken.WriteRune(char)
+			currentToken += string(char)
 		}
 	}
 
-	if currentToken.Len() > 0 {
-		tokens = append(tokens, currentToken.String())
+	if len(currentToken) > 0 {
+		tokens = append(tokens, currentToken)
 	}
 
 	return tokens
