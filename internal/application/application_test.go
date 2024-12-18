@@ -14,7 +14,6 @@ import (
 type RequestTest struct {
 	Expression string `json:"expression"`
 }
-
 type ResponseTest struct {
 	Result float64 `json:"result"`
 }
@@ -94,6 +93,14 @@ func TestCalculateHandler(t *testing.T) {
 				Expression: "3.142134132 / 2",
 			},
 			expectedResult: 1.571067066,
+			err:            nil,
+		},
+		{
+			name: "Valid expression",
+			input: RequestTest{
+				Expression: "1+2",
+			},
+			expectedResult: 3,
 			err:            nil,
 		},
 	}
