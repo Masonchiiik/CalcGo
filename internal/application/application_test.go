@@ -88,6 +88,14 @@ func TestCalculateHandler(t *testing.T) {
 			expectedResult: 1,
 			err:            nil,
 		},
+		{
+			name: "Valid expression with float input and with space",
+			input: RequestTest{
+				Expression: "3.142134132 / 2",
+			},
+			expectedResult: 1.571067066,
+			err:            nil,
+		},
 	}
 
 	for _, tt := range tests {
