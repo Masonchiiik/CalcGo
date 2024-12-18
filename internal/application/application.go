@@ -101,5 +101,5 @@ func (a *Application) StartServer() {
 
 	mux.Handle("/api/v1/calculate", LoggingMiddleware(Handler))
 
-	http.ListenAndServe(":8080", mux)
+	http.ListenAndServe("", mux)
 }

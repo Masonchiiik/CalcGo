@@ -21,7 +21,7 @@
 ## Как использовать
 
 1. Запустите исполняемый файл `main.exe`.
-2. Отправьте POST-запрос (например, через cURL) на URL: `localhost:8080/api/v1/calculate`.
+2. Отправьте POST-запрос (например, через cURL) на URL: `localhost/api/v1/calculate`.
 3. Получите ответ.
 
 ---
@@ -33,7 +33,7 @@
 **Пример запроса через curl:**
 
 ```bash
-curl --location 'localhost:8080/api/v1/calculate' \
+curl --location 'localhost/api/v1/calculate' \
 --header 'Content-Type: application/json' \
 --data '{
     "expression": "2*2+2"
@@ -57,7 +57,7 @@ curl --location 'localhost:8080/api/v1/calculate' \
 **Пример запроса через curl:**
 
 ```bash
-curl --location 'localhost:8080/api/v1/calculate' \
+curl --location 'localhost/api/v1/calculate' \
 --header 'Content-Type: application/json' \
 --data '{
     "expression": "0.25+0.251++"
@@ -81,7 +81,7 @@ curl --location 'localhost:8080/api/v1/calculate' \
 **Пример запроса через curl:**
 
 ```bash
-curl --location --request GET 'localhost:8080/api/v1/calculate' \
+curl --location --request GET 'localhost/api/v1/calculate' \
 --header 'Content-Type: application/json' \
 --data '{
     "expression": "0.25+0.251++"
@@ -102,7 +102,6 @@ curl --location --request GET 'localhost:8080/api/v1/calculate' \
 
 ## Примечания
 
-- Убедитесь, что порт `8080` не занят другими приложениями.
 - Поддерживаются стандартные арифметические операции: сложение, вычитание, умножение, деление и скобки для изменения порядка операций.
 - Поддерживаются только POST-запросы, отправка других приведёт к ошибке.
 - Рекомендуем для тестирования использовать Postman, так как с curl могут быть проблемы
