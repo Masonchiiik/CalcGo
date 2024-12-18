@@ -20,7 +20,7 @@
 
 ## Как использовать
 
-1. Запустите исполняемый файл `main.exe`.
+1. Запустите исполняемый файл `main.exe` или перейдите в директорию проекта и введите в командную строку `go run cmd/main.go`.
 2. Отправьте POST-запрос (например, через cURL) на URL: `localhost/api/v1/calculate`.
 3. Получите ответ.
 
@@ -33,11 +33,7 @@
 **Пример запроса через curl:**
 
 ```bash
-curl --location 'localhost/api/v1/calculate' \
---header 'Content-Type: application/json' \
---data '{
-    "expression": "2*2+2"
-}'
+curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression":"2*2+2"}'
 ```
 
 **Пример ответа:**
@@ -57,11 +53,7 @@ curl --location 'localhost/api/v1/calculate' \
 **Пример запроса через curl:**
 
 ```bash
-curl --location 'localhost/api/v1/calculate' \
---header 'Content-Type: application/json' \
---data '{
-    "expression": "0.25+0.251++"
-}'
+curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression":"0.25+0.251++"}'
 ```
 
 **Пример ответа:**
@@ -81,10 +73,7 @@ curl --location 'localhost/api/v1/calculate' \
 **Пример запроса через curl:**
 
 ```bash
-curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application/json' --data '{
-    "expression": "2+2"
-
-'
+curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression": "2+2" '
 ```
 
 **Пример ответа:**
