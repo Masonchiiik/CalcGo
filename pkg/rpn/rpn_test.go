@@ -94,6 +94,10 @@ func TestCalc(t *testing.T) {
 			name:       "simple",
 			expression: "+2-+2-2+23+-",
 		},
+		{
+			name:       "simple",
+			expression: "2+2*2",
+		},
 	}
 
 	for _, testCase := range testCasesFail {
