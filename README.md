@@ -30,7 +30,7 @@
 
 ### Успешный запрос
 
-**Пример запроса через cURL:**
+**Пример запроса через curl:**
 
 ```bash
 curl --location 'localhost:8080/api/v1/calculate' \
@@ -54,7 +54,7 @@ curl --location 'localhost:8080/api/v1/calculate' \
 
 ### Ошибка 422 (Некорректное выражение)
 
-**Пример запроса через cURL:**
+**Пример запроса через curl:**
 
 ```bash
 curl --location 'localhost:8080/api/v1/calculate' \
@@ -78,7 +78,7 @@ curl --location 'localhost:8080/api/v1/calculate' \
 
 ### Ошибка 500 (Отправка не POST-запроса)
 
-**Пример запроса через cURL:**
+**Пример запроса через curl:**
 
 ```bash
 curl --location --request GET 'localhost:8080/api/v1/calculate' \
