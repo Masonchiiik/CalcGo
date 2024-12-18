@@ -8,25 +8,25 @@ import (
 
 func tokenize(expr string) []string {
 	var tokens []string
-	var currentToken string
+	var currToken string
 
-	for _, char := range expr {
-		switch char {
+	for _, chr := range expr {
+		switch chr {
 		case ' ':
 			continue
 		case '+', '-', '*', '/', '(', ')':
-			if len(currentToken) > 0 {
-				tokens = append(tokens, currentToken)
-				currentToken = ""
+			if len(currToken) > 0 {
+				tokens = append(tokens, currToken)
+				currToken = ""
 			}
-			tokens = append(tokens, string(char))
+			tokens = append(tokens, string(chr))
 		default:
-			currentToken += string(char)
+			currToken += string(chr)
 		}
 	}
 
-	if len(currentToken) > 0 {
-		tokens = append(tokens, currentToken)
+	if len(currToken) > 0 {
+		tokens = append(tokens, currToken)
 	}
 
 	return tokens
@@ -34,43 +34,43 @@ func tokenize(expr string) []string {
 
 func Calc(expression string) (float64, error) {
 	tokens := tokenize(expression)
-	var output, operators []string
+	var out, op []string
 
 	for _, token := range tokens {
 		switch {
 		case token == "(":
-			operators = append(operators, token)
+			op = append(op, token)
 		case token == ")":
-			for len(operators) > 0 && operators[len(operators)-1] != "(" {
-				output = append(output, operators[len(operators)-1])
-				operators = operators[:len(operators)-1]
+			for len(op) > 0 && op[len(op)-1] != "(" {
+				out = append(out, op[len(op)-1])
+				op = op[:len(op)-1]
 			}
-			if len(operators) == 0 {
+			if len(op) == 0 {
 				return 0, errors.New("invalid expression")
 			}
-			operators = operators[:len(operators)-1]
+			op = op[:len(op)-1]
 		case token == "+" || token == "-" || token == "*" || token == "/":
-			for len(operators) > 0 && (operators[len(operators)-1] == "*" || operators[len(operators)-1] == "/") {
-				output = append(output, operators[len(operators)-1])
-				operators = operators[:len(operators)-1]
+			for len(op) > 0 && (op[len(op)-1] == "*" || op[len(op)-1] == "/") {
+				out = append(out, op[len(op)-1])
+				op = op[:len(op)-1]
 			}
-			operators = append(operators, token)
+			op = append(op, token)
 		default:
 			_, err := strconv.ParseFloat(token, 64)
 			if err != nil {
 				return 0, fmt.Errorf("invalid expression")
 			}
-			output = append(output, token)
+			out = append(out, token)
 		}
 	}
 
-	for len(operators) > 0 {
-		output = append(output, operators[len(operators)-1])
-		operators = operators[:len(operators)-1]
+	for len(op) > 0 {
+		out = append(out, op[len(op)-1])
+		op = op[:len(op)-1]
 	}
 
 	var stack []float64
-	for _, token := range output {
+	for _, token := range out {
 		switch {
 		case token == "+" || token == "-" || token == "*" || token == "/":
 			if len(stack) < 2 {
