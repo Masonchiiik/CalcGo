@@ -83,9 +83,9 @@ func CalculateHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, errorExpression, 422)
 		return
 	}
-	var ans Answer
-	ans.Result = result
-	jsonByte, err := json.Marshal(ans)
+	var res Answer
+	res.Result = result
+	jsonByte, err := json.Marshal(res)
 
 	if err != nil {
 		http.Error(w, errorInternal, 500)
