@@ -41,7 +41,7 @@ func Calc(expression string) (float64, error) {
 		case token == "(":
 			op = append(op, token)
 		case token == ")":
-			for len(op) > 0 && op[len(op)-1] != "(" {
+			for len(op) != 0 && op[len(op)-1] != "(" {
 				out = append(out, op[len(op)-1])
 				op = op[:len(op)-1]
 			}
@@ -64,7 +64,7 @@ func Calc(expression string) (float64, error) {
 		}
 	}
 
-	for len(op) > 0 {
+	for len(op) != 0 {
 		out = append(out, op[len(op)-1])
 		op = op[:len(op)-1]
 	}
