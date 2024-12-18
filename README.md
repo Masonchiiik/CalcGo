@@ -81,11 +81,10 @@ curl --location 'localhost/api/v1/calculate' \
 **Пример запроса через curl:**
 
 ```bash
-curl --location --request GET 'localhost/api/v1/calculate' \
---header 'Content-Type: application/json' \
---data '{
-    "expression": "0.25+0.251++"
-}'
+curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application/json' --data '{
+    "expression": "2+2"
+
+'
 ```
 
 **Пример ответа:**
