@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func tokenize(expr string) []string {
+func tokenizer(expr string) []string {
 	var tokens []string
 	var currToken string
 
@@ -32,8 +32,8 @@ func tokenize(expr string) []string {
 	return tokens
 }
 
-func Calc(expression string) (float64, error) {
-	tokens := tokenize(expression)
+func Calc(expr string) (float64, error) {
+	tokens := tokenizer(expr)
 	var out, op []string
 
 	for _, token := range tokens {
