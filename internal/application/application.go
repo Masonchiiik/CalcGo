@@ -30,6 +30,12 @@ func New() *Application {
 
 func LoggingMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+
+		if r.Method != http.MethodPost {
+			http.Error(w, errorPost, 405)
+			return
+		}
+
 		var body Request
 
 		file, err := os.OpenFile("server.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
@@ -62,11 +68,6 @@ func LoggingMiddleware(next http.Handler) http.Handler {
 }
 
 func CalculateHandler(w http.ResponseWriter, r *http.Request) {
-
-	if r.Method != http.MethodPost {
-		http.Error(w, errorPost, 405)
-		return
-	}
 
 	var requestBody Request
 	err := json.NewDecoder(r.Body).Decode(&requestBody)
