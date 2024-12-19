@@ -52,6 +52,21 @@ func TestCalc(t *testing.T) {
 			expression:     "2",
 			expectedResult: 2.0,
 		},
+		{
+			name:           "brackets",
+			expression:     "(2*2)/4",
+			expectedResult: 1.0,
+		},
+		{
+			name:           "addition and division",
+			expression:     "4+6/3",
+			expectedResult: 6.0,
+		},
+		{
+			name:           "single number",
+			expression:     "42",
+			expectedResult: 42.0,
+		},
 	}
 
 	for _, test_case := range testCasesSuccess {
@@ -59,13 +74,12 @@ func TestCalc(t *testing.T) {
 			val, err := rpn.Calc(test_case.expression)
 
 			if err != nil {
-				t.Fatalf("succesful case %v returns error", test_case.expression)
+				t.Fatalf("succesful case %v error", test_case.expression)
 			}
 
 			if val != test_case.expectedResult {
 				t.Fatalf("%f should be equal %f", val, test_case.expectedResult)
 			}
-
 		})
 	}
 
@@ -94,15 +108,22 @@ func TestCalc(t *testing.T) {
 			name:       "simple",
 			expression: "+2-+2-2+23+-",
 		},
+		{
+			name:       "division by zero",
+			expression: "1/0",
+		},
+		{
+			name:       "too many operators",
+			expression: "2***3",
+		},
 	}
 
 	for _, testCase := range testCasesFail {
 		t.Run(testCase.name, func(t *testing.T) {
 			val, err := rpn.Calc(testCase.expression)
 			if err == nil {
-				t.Fatalf("expression %v is invalid but result  %v was obtained", testCase.expression, val)
+				t.Fatalf("expression %v is invalid but result  %v", testCase.expression, val)
 			}
 		})
 	}
-
 }
