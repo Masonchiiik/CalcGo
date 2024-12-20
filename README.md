@@ -66,25 +66,6 @@ curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application
 
 **HTTP-код ответа:** `422` (Unprocessable Entity).
 
----
-
-### Ошибка 500 (Отправка некорректного запроса)
-
-**Пример запроса через curl:**
-
-```bash
-curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression": "2+2" '
-```
-
-**Пример ответа:**
-
-```json
-{
-    "error": "Internal server error"
-}
-```
-
-**HTTP-код ответа:** `500` (Internal Server Error).
 
 ---
 
