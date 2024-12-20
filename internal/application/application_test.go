@@ -103,6 +103,22 @@ func TestCalculateHandler(t *testing.T) {
 			expectedResult: 3,
 			err:            nil,
 		},
+		{
+			name: "Valid expression",
+			input: RequestTest{
+				Expression: "2+2*(14+2)*42",
+			},
+			expectedResult: 1346,
+			err:            nil,
+		},
+		{
+			name: "Valid expression with float",
+			input: RequestTest{
+				Expression: "2+2*42+(92)/3",
+			},
+			expectedResult: 116.66666666666667,
+			err:            nil,
+		},
 	}
 
 	for _, tt := range tests {
