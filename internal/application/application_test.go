@@ -111,7 +111,7 @@ func TestCalculateHandler(t *testing.T) {
 			handler := http.HandlerFunc(application.CalculateHandler)
 			body, err := json.Marshal(tt.input)
 			if err != nil {
-				t.Fatal("failed to marshal input")
+				t.Fatal("json failed")
 			}
 
 			req := httptest.NewRequest(http.MethodPost, "/api/v1/calculate", bytes.NewReader(body))
@@ -127,7 +127,7 @@ func TestCalculateHandler(t *testing.T) {
 			}
 
 			if resp.Result != tt.expectedResult {
-				t.Errorf("expected result %f, got %f", tt.expectedResult, resp.Result)
+				t.Errorf("expected result %v, got %v", tt.expectedResult, resp.Result)
 			}
 		})
 	}
