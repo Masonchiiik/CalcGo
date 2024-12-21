@@ -6,9 +6,16 @@ import (
 	"strconv"
 )
 
-func Calc(expr string) (float64, error) {
+var priority = map[string]int{
+	"+": 1,
+	"-": 1,
+	"*": 2,
+	"/": 2,
+}
+
+func Tokenizer(expr string) ([]string, error) {
 	var tokens []string
-	var currToken string
+	currToken := ""
 
 	for _, chr := range expr {
 		switch chr {
@@ -21,6 +28,9 @@ func Calc(expr string) (float64, error) {
 			}
 			tokens = append(tokens, string(chr))
 		default:
+			if (chr < '0' || chr > '9') && chr != '.' {
+				return nil, errors.New("invalid expression")
+			}
 			currToken += string(chr)
 		}
 	}
@@ -29,7 +39,17 @@ func Calc(expr string) (float64, error) {
 		tokens = append(tokens, currToken)
 	}
 
-	var out, op []string
+	return tokens, nil
+}
+
+func Calc(expr string) (float64, error) {
+	tokens, err := Tokenizer(expr)
+	if err != nil {
+		return 0, err
+	}
+
+	var out []string
+	var op []string
 
 	for _, token := range tokens {
 		switch {
@@ -45,7 +65,7 @@ func Calc(expr string) (float64, error) {
 			}
 			op = op[:len(op)-1]
 		case token == "+" || token == "-" || token == "*" || token == "/":
-			for len(op) > 0 && (op[len(op)-1] == "*" || op[len(op)-1] == "/") {
+			for len(op) > 0 && priority[op[len(op)-1]] >= priority[token] {
 				out = append(out, op[len(op)-1])
 				op = op[:len(op)-1]
 			}
@@ -53,18 +73,22 @@ func Calc(expr string) (float64, error) {
 		default:
 			_, err := strconv.ParseFloat(token, 64)
 			if err != nil {
-				return 0, fmt.Errorf("invalid expression")
+				return 0, fmt.Errorf("invalid token: %s", token)
 			}
 			out = append(out, token)
 		}
 	}
 
 	for len(op) != 0 {
+		if op[len(op)-1] == "(" {
+			return 0, errors.New("mismatched parentheses")
+		}
 		out = append(out, op[len(op)-1])
 		op = op[:len(op)-1]
 	}
 
 	var stack []float64
+
 	for _, token := range out {
 		switch {
 		case token == "+" || token == "-" || token == "*" || token == "/":
@@ -90,7 +114,7 @@ func Calc(expr string) (float64, error) {
 		default:
 			num, err := strconv.ParseFloat(token, 64)
 			if err != nil {
-				return 0, fmt.Errorf("invalid token")
+				return 0, fmt.Errorf("invalid expression")
 			}
 			stack = append(stack, num)
 		}

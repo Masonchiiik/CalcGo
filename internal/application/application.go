@@ -78,7 +78,7 @@ func CalculateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprint(w, string(jsonByte))
-	log.Printf("server will end with code 400 and with result: %v", res.Result)
+	log.Printf("server end work with code 400 and with result: %v", res.Result)
 }
 
 func (a *Application) StartServer() {
