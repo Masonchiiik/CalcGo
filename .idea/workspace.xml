@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6362eac3-1aca-4351-abba-7c730defcb3b" name="Changes" comment="update application_test.go">
+      <change beforePath="$PROJECT_DIR$/internal/application/application.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/application/application.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../../Program Files/Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Masonchiiik&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Masonchiiik/CalcGo.git&quot;,
+    &quot;accountId&quot;: &quot;9cfe3747-b17c-4f0e-a98b-755766207b82&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/pkg/rpn/rpn.go" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2qOa5sLRgsPvqNuLoVsHwuKozm1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Go Build.go build github.com/Masonchiiik/CalcGo/cmd.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestCalc in github.com/Masonchiiik/CalcGo/pkg/rpn (1).executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestCalc in github.com/Masonchiiik/CalcGo/pkg/rpn (2).executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestCalc in github.com/Masonchiiik/CalcGo/pkg/rpn.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestCalc/((1+4)*(1+2)+10)*4 in github.com/Masonchiiik/CalcGo/pkg/rpn.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestCalc/+5 in github.com/Masonchiiik/CalcGo/pkg/rpn.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestCalc/brackets in github.com/Masonchiiik/CalcGo/pkg/rpn.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestCalcErrors in github.com/Masonchiiik/CalcGo/pkg/rpn.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestCalculateHandler in github.com/Masonchiiik/CalcGo/internal/application.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.TestCalculateHandler/Valid_expression_with_float in github.com/Masonchiiik/CalcGo/internal/application.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.go test github.com/Masonchiiik/CalcGo/internal/application.executor&quot;: &quot;Run&quot;,
+    &quot;Go Test.go test github.com/Masonchiiik/CalcGo/pkg/rpn.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Арсений/Downloads/github-copilot-intellij-1.5.29.7524.zip&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Арсений\OneDrive\Документы\GitHub\CalcGo" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build github.com/Masonchiiik/CalcGo/cmd">
+    <configuration name="go build github.com/Masonchiiik/CalcGo/cmd" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="CalcGo" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/Masonchiiik/CalcGo/cmd" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/cmd/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestCalc in github.com/Masonchiiik/CalcGo/pkg/rpn (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="CalcGo" />
+      <working_directory value="$PROJECT_DIR$/pkg/rpn" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/Masonchiiik/CalcGo/pkg/rpn" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestCalc\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestCalculateHandler in github.com/Masonchiiik/CalcGo/internal/application" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="CalcGo" />
+      <working_directory value="$PROJECT_DIR$/internal/application" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/Masonchiiik/CalcGo/internal/application" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestCalculateHandler\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestCalculateHandler/Valid_expression_with_float in github.com/Masonchiiik/CalcGo/internal/application" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="CalcGo" />
+      <working_directory value="$PROJECT_DIR$/internal/application" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/Masonchiiik/CalcGo/internal/application" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestCalculateHandler\E$/^\QValid_expression_with_float\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go test github.com/Masonchiiik/CalcGo/pkg/rpn" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="CalcGo" />
+      <working_directory value="$PROJECT_DIR$/pkg/rpn" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/Masonchiiik/CalcGo/pkg/rpn" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build github.com/Masonchiiik/CalcGo/cmd" />
+        <item itemvalue="Go Test.TestCalculateHandler in github.com/Masonchiiik/CalcGo/internal/application" />
+        <item itemvalue="Go Test.TestCalculateHandler/Valid_expression_with_float in github.com/Masonchiiik/CalcGo/internal/application" />
+        <item itemvalue="Go Test.go test github.com/Masonchiiik/CalcGo/pkg/rpn" />
+        <item itemvalue="Go Test.TestCalc in github.com/Masonchiiik/CalcGo/pkg/rpn (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-d297c17c1fbd-d82d926f19eb-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-243.22562.186" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-GO-243.22562.186" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="New test" />
+    <MESSAGE value="rpn test update" />
+    <MESSAGE value="translate main title" />
+    <MESSAGE value="port update" />
+    <MESSAGE value="update httpError.go" />
+    <MESSAGE value="update main.exe" />
+    <MESSAGE value="update application.go" />
+    <MESSAGE value="update rpn_test.go" />
+    <MESSAGE value="update rpn.go" />
+    <MESSAGE value="update README.md" />
+    <MESSAGE value="update application_test.go" />
+    <option name="LAST_COMMIT_MESSAGE" value="update application_test.go" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
