@@ -6,14 +6,7 @@ import (
 	"strconv"
 )
 
-var priority = map[string]int{
-	"+": 1,
-	"-": 1,
-	"*": 2,
-	"/": 2,
-}
-
-func Tokenizer(expr string) ([]string, error) {
+func tokenizer(expr string) ([]string, error) {
 	var tokens []string
 	currToken := ""
 
@@ -42,54 +35,63 @@ func Tokenizer(expr string) ([]string, error) {
 	return tokens, nil
 }
 
-func Calc(expr string) (float64, error) {
-	tokens, err := Tokenizer(expr)
-	if err != nil {
-		return 0, err
-	}
-
+func rpnWrite(tokens []string) ([]string, error) {
 	var out []string
-	var op []string
+	var tempStack []string
+
+	var priority = map[string]int{"+": 1, "-": 1, "*": 2, "/": 2}
 
 	for _, token := range tokens {
-		switch {
-		case token == "(":
-			op = append(op, token)
-		case token == ")":
-			for len(op) != 0 && op[len(op)-1] != "(" {
-				out = append(out, op[len(op)-1])
-				op = op[:len(op)-1]
+		switch token {
+		case "+", "-", "*", "/":
+			for len(tempStack) > 0 && priority[tempStack[len(tempStack)-1]] >= priority[token] {
+				out = append(out, tempStack[len(tempStack)-1])
+				tempStack = tempStack[:len(tempStack)-1]
 			}
-			if len(op) == 0 {
-				return 0, errors.New("invalid expression")
+			tempStack = append(tempStack, token)
+		case "(":
+			tempStack = append(tempStack, token)
+		case ")":
+			for len(tempStack) > 0 && tempStack[len(tempStack)-1] != "(" {
+				out = append(out, tempStack[len(tempStack)-1])
+				tempStack = tempStack[:len(tempStack)-1]
 			}
-			op = op[:len(op)-1]
-		case token == "+" || token == "-" || token == "*" || token == "/":
-			for len(op) > 0 && priority[op[len(op)-1]] >= priority[token] {
-				out = append(out, op[len(op)-1])
-				op = op[:len(op)-1]
+			if len(tempStack) == 0 {
+				return nil, errors.New("invalid expression")
 			}
-			op = append(op, token)
+			tempStack = tempStack[:len(tempStack)-1]
 		default:
-			_, err := strconv.ParseFloat(token, 64)
-			if err != nil {
-				return 0, fmt.Errorf("invalid token: %s", token)
-			}
 			out = append(out, token)
 		}
 	}
 
-	for len(op) != 0 {
-		if op[len(op)-1] == "(" {
-			return 0, errors.New("mismatched parentheses")
+	for len(tempStack) > 0 {
+		if tempStack[len(tempStack)-1] == "(" {
+			return nil, errors.New("invalid expression")
 		}
-		out = append(out, op[len(op)-1])
-		op = op[:len(op)-1]
+		out = append(out, tempStack[len(tempStack)-1])
+		tempStack = tempStack[:len(tempStack)-1]
+	}
+
+	return out, nil
+}
+
+func Calc(expr string) (float64, error) {
+
+	tokenList, err := tokenizer(expr)
+
+	if err != nil {
+		return 0, err
+	}
+
+	rpnList, err := rpnWrite(tokenList)
+	if err != nil {
+		return 0, err
 	}
 
 	var stack []float64
 
-	for _, token := range out {
+	for _, token := range rpnList {
 		switch {
 		case token == "+" || token == "-" || token == "*" || token == "/":
 			if len(stack) < 2 {
