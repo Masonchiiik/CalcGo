@@ -1,10 +1,8 @@
 package application
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
 	"os"
@@ -28,51 +26,34 @@ func New() *Application {
 	return &Application{}
 }
 
-func LoggingMiddleware(next http.Handler) http.Handler {
+func CheckMethodMiddlerware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-
 		if r.Method != http.MethodPost {
-			http.Error(w, errorPost, 405)
+			http.Error(w, errorMethod, http.StatusMethodNotAllowed)
 			return
 		}
-
-		var body Request
-
-		file, err := os.OpenFile("server.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
-		if err != nil {
-			http.Error(w, errorInternal, 500)
-			return
-		}
-		defer file.Close()
-
-		log.SetOutput(file)
-
-		bodyBytes, err := io.ReadAll(r.Body)
-		if err != nil {
-			http.Error(w, errorInternal, 500)
-			return
-		}
-
-		r.Body = io.NopCloser(bytes.NewReader(bodyBytes))
-
-		err = json.NewDecoder(bytes.NewReader(bodyBytes)).Decode(&body)
-		if err != nil {
-			http.Error(w, errorInternal, 500)
-			return
-		}
-
-		log.Printf("Body: %v", body)
-
 		next.ServeHTTP(w, r)
 	})
 }
 
 func CalculateHandler(w http.ResponseWriter, r *http.Request) {
 
-	var requestBody Request
-	err := json.NewDecoder(r.Body).Decode(&requestBody)
+	file, err := os.OpenFile("CalcGo.log", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0660)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetOutput(file)
 
 	if err != nil {
+		log.Print("Server end work with 500 code")
+		http.Error(w, errorInternal, 500)
+	}
+
+	var requestBody Request
+	err = json.NewDecoder(r.Body).Decode(&requestBody)
+
+	if err != nil {
+		log.Print("Server end work with 500 code")
 		http.Error(w, errorInternal, 500)
 		return
 	}
@@ -81,26 +62,30 @@ func CalculateHandler(w http.ResponseWriter, r *http.Request) {
 
 	result, err := rpn.Calc(strings.TrimSpace(requestBody.Expression))
 	if err != nil {
+		log.Print("Server end work with 422 code")
 		http.Error(w, errorExpression, 422)
 		return
 	}
+
 	var res Answer
 	res.Result = result
 	jsonByte, err := json.Marshal(res)
 
 	if err != nil {
+		log.Print("Server end work with 500 code")
 		http.Error(w, errorInternal, 500)
 		return
 	}
 
 	fmt.Fprint(w, string(jsonByte))
+	log.Printf("server will end with code 400 and with result: %v", res.Result)
 }
 
 func (a *Application) StartServer() {
 	mux := http.NewServeMux()
 	Handler := http.HandlerFunc(CalculateHandler)
 
-	mux.Handle("/api/v1/calculate", LoggingMiddleware(Handler))
+	mux.Handle("/api/v1/calculate", CheckMethodMiddlerware(Handler))
 
 	http.ListenAndServe("", mux)
 }
