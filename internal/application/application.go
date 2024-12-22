@@ -30,6 +30,12 @@ func CheckMethodMiddlerware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
 			http.Error(w, errorMethod, http.StatusMethodNotAllowed)
+			file, err := os.OpenFile("CalcGo.log", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0660)
+			if err != nil {
+				log.Fatal(err)
+			}
+			log.SetOutput(file)
+			log.Print("Server end work with 405 code")
 			return
 		}
 		next.ServeHTTP(w, r)
