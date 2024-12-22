@@ -132,6 +132,14 @@ func TestCalculateHandler(t *testing.T) {
 			err:            nil,
 			statusCode:     200,
 		},
+		{
+			name: "Division by zero",
+			input: RequestTest{
+				Expression: "1/0",
+			},
+			err:        errors.New("Expression is not valid"),
+			statusCode: 422,
+		},
 	}
 
 	for _, tt := range tests {
