@@ -139,7 +139,7 @@ func TestCalculateHandler(t *testing.T) {
 			handler := http.HandlerFunc(application.CalculateHandler)
 			body, err := json.Marshal(tt.input)
 			if err != nil {
-				t.Fatal("Failed to marshal input JSON")
+				t.Fatal("JSON fail")
 			}
 
 			req := httptest.NewRequest(http.MethodPost, "/api/v1/calculate", bytes.NewReader(body))
@@ -147,17 +147,17 @@ func TestCalculateHandler(t *testing.T) {
 			handler.ServeHTTP(rec, req)
 
 			if rec.Code != tt.statusCode {
-				t.Errorf("Unexpected status code: got %v, expected %v", rec.Code, tt.statusCode)
+				t.Errorf("status code: got %v, expected %v", rec.Code, tt.statusCode)
 			}
 
 			var resp ResponseTest
 			err = json.NewDecoder(rec.Body).Decode(&resp)
 			if err != nil && err != tt.err {
-				t.Errorf("Unexpected error: got %v, expected %v", err, tt.err)
+				t.Errorf("error: got %v, expected %v", err, tt.err)
 			}
 
 			if resp.Result != tt.expectedResult {
-				t.Errorf("Unexpected result: got %v, expected %v", resp.Result, tt.expectedResult)
+				t.Errorf("result: got %v, expected %v", resp.Result, tt.expectedResult)
 			}
 		})
 	}
