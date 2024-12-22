@@ -75,7 +75,17 @@ curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application
 
 
 ---
+### Ошибка 405 (Неподдерживаемый запрос)
 
+**Пример запроса через curl:**
+
+```bas
+curl --location --request GET 'localhost/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression":"21-12-81+24+72*42/3"}'
+```
+
+**HTTP-код ответа:** `405` (Method not allowed)
+
+---
 ## Примечания
 
 - Поддерживаются стандартные арифметические операции: сложение, вычитание, умножение, деление и скобки для изменения порядка операций.
