@@ -53,8 +53,8 @@ func CalculateHandler(w http.ResponseWriter, r *http.Request) {
 	err = json.NewDecoder(r.Body).Decode(&requestBody)
 
 	if err != nil {
-		log.Print("Server end work with 500 code")
-		http.Error(w, errorInternal, 500)
+		log.Print("Server end work with 422 code")
+		http.Error(w, errorExpression, 422)
 		return
 	}
 
