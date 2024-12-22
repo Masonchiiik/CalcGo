@@ -83,6 +83,14 @@ curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application
 curl --location --request GET 'localhost/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression":"21-12-81+24+72*42/3"}'
 ```
 
+**Пример ответа:**
+
+```json
+{
+    "error": "Only POST method available"
+}
+```
+
 **HTTP-код ответа:** `405` (Method not allowed)
 
 ---
