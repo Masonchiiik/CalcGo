@@ -3,3 +3,4 @@ server.log
 internal/application/CalcGo.log
 main.exe
 cmd/CalcGo.log
+cmd/CalcGo.log
