@@ -93,5 +93,5 @@ func (a *Application) StartServer() {
 
 	mux.Handle("/api/v1/calculate", CheckMethodMiddlerware(Handler))
 
-	http.ListenAndServe("", mux)
+	http.ListenAndServe(port, mux)
 }

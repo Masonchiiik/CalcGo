@@ -29,7 +29,7 @@ CalcGo — это простой и эффективный веб-сервис �
 ## Как использовать
 
 1. Перейдите в директорию проекта и введите в командную строку `go run cmd/main.go`. Или скомпилируйте файл командой `go build cmd/main.go` и запустите полученный исполняемый файл.
-2. Отправьте POST-запрос (например, через curl) на URL: `localhost/api/v1/calculate`.
+2. Отправьте POST-запрос (например, через curl) на URL: `localhost:8080/api/v1/calculate`.
 3. Получите ответ.
 
 ---
@@ -41,7 +41,7 @@ CalcGo — это простой и эффективный веб-сервис �
 **Пример запроса через curl:**
 
 ```bash
-curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression":"2*2+2"}'
+curl --location 'localhost:8080/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression":"2*2+2"}'
 ```
 
 **Пример ответа:**
@@ -61,7 +61,7 @@ curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application
 **Пример запроса через curl:**
 
 ```bash
-curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression":"0.25+0.251++"}'
+curl --location 'localhost:8080/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression":"0.25+0.251++"}'
 ```
 
 **Пример ответа:**
@@ -80,8 +80,8 @@ curl --location 'localhost/api/v1/calculate' --header 'Content-Type: application
 
 **Пример запроса через curl:**
 
-```bas
-curl --location --request GET 'localhost/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression":"21-12-81+24+72*42/3"}'
+```bash
+curl --location --request GET 'localhost:8080/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression":"21-12-81+24+72*42/3"}'
 ```
 
 **Пример ответа:**
@@ -93,6 +93,12 @@ curl --location --request GET 'localhost/api/v1/calculate' --header 'Content-Typ
 ```
 
 **HTTP-код ответа:** `405` (Method not allowed)
+
+---
+
+## Конфигурация
+
+Вы можете изменить порт на кастомный(изначально: ":8080"), для этого откройте файл `config.go` и измените значение
 
 ---
 ## Примечания
