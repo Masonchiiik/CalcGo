@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6362eac3-1aca-4351-abba-7c730defcb3b" name="Changes" comment="update application_test.go">
-      <change beforePath="$PROJECT_DIR$/internal/application/application.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/application/application.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,41 +43,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Go Build.go build github.com/Masonchiiik/CalcGo/cmd.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestCalc in github.com/Masonchiiik/CalcGo/pkg/rpn (1).executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestCalc in github.com/Masonchiiik/CalcGo/pkg/rpn (2).executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestCalc in github.com/Masonchiiik/CalcGo/pkg/rpn.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestCalc/((1+4)*(1+2)+10)*4 in github.com/Masonchiiik/CalcGo/pkg/rpn.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestCalc/+5 in github.com/Masonchiiik/CalcGo/pkg/rpn.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestCalc/brackets in github.com/Masonchiiik/CalcGo/pkg/rpn.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestCalcErrors in github.com/Masonchiiik/CalcGo/pkg/rpn.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestCalculateHandler in github.com/Masonchiiik/CalcGo/internal/application.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.TestCalculateHandler/Valid_expression_with_float in github.com/Masonchiiik/CalcGo/internal/application.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.go test github.com/Masonchiiik/CalcGo/internal/application.executor&quot;: &quot;Run&quot;,
-    &quot;Go Test.go test github.com/Masonchiiik/CalcGo/pkg/rpn.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Арсений/Downloads/github-copilot-intellij-1.5.29.7524.zip&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Go Build.go build github.com/Masonchiiik/CalcGo/cmd.executor": "Run",
+    "Go Test.TestCalc in github.com/Masonchiiik/CalcGo/pkg/rpn (1).executor": "Run",
+    "Go Test.TestCalc in github.com/Masonchiiik/CalcGo/pkg/rpn (2).executor": "Run",
+    "Go Test.TestCalc in github.com/Masonchiiik/CalcGo/pkg/rpn.executor": "Run",
+    "Go Test.TestCalc/((1+4)*(1+2)+10)*4 in github.com/Masonchiiik/CalcGo/pkg/rpn.executor": "Run",
+    "Go Test.TestCalc/+5 in github.com/Masonchiiik/CalcGo/pkg/rpn.executor": "Run",
+    "Go Test.TestCalc/brackets in github.com/Masonchiiik/CalcGo/pkg/rpn.executor": "Run",
+    "Go Test.TestCalcErrors in github.com/Masonchiiik/CalcGo/pkg/rpn.executor": "Run",
+    "Go Test.TestCalculateHandler in github.com/Masonchiiik/CalcGo/internal/application.executor": "Run",
+    "Go Test.TestCalculateHandler/Valid_expression_with_float in github.com/Masonchiiik/CalcGo/internal/application.executor": "Run",
+    "Go Test.go test github.com/Masonchiiik/CalcGo/internal/application.executor": "Run",
+    "Go Test.go test github.com/Masonchiiik/CalcGo/pkg/rpn.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Арсений/Downloads/github-copilot-intellij-1.5.29.7524.zip",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Арсений\OneDrive\Документы\GitHub\CalcGo" />
@@ -142,11 +142,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build github.com/Masonchiiik/CalcGo/cmd" />
-        <item itemvalue="Go Test.TestCalculateHandler in github.com/Masonchiiik/CalcGo/internal/application" />
-        <item itemvalue="Go Test.TestCalculateHandler/Valid_expression_with_float in github.com/Masonchiiik/CalcGo/internal/application" />
         <item itemvalue="Go Test.go test github.com/Masonchiiik/CalcGo/pkg/rpn" />
+        <item itemvalue="Go Test.TestCalculateHandler/Valid_expression_with_float in github.com/Masonchiiik/CalcGo/internal/application" />
+        <item itemvalue="Go Test.TestCalculateHandler in github.com/Masonchiiik/CalcGo/internal/application" />
         <item itemvalue="Go Test.TestCalc in github.com/Masonchiiik/CalcGo/pkg/rpn (1)" />
+        <item itemvalue="Go Build.go build github.com/Masonchiiik/CalcGo/cmd" />
       </list>
     </recent_temporary>
   </component>
